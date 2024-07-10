@@ -109,12 +109,15 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
   logo: {
     width: 150,
