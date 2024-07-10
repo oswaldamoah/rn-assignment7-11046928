@@ -1,59 +1,53 @@
-# DCIT202 ASSIGNMENT 6
+# DCIT202 ASSIGNMENT 7
 
 ## 11042928
 
+
 ### Components
 
-- **HomeScreen**: Displays a list of available products. Each product includes an image, name, description, price, and an "Add to Cart" button.
-- **CartScreen**: Displays selected items in the cart. Each cart item includes an image, name, description, price, quantity, and a "Remove from Cart" button.
-- **Prodcut**: It is the component that structures each of the products displayed in the HomeScreen
+1. **HomeScreen**
+   - Displays available products fetched from an external API.
+   - Each Product includes an image, name, price, and an add-to-cart button.
 
-### Functionality
+2. **Product**
+   - Handles informmation displayed on each product in the HomeScreen
 
-- **View Available Products**: Users can see a list of available products on the HomeScreen.
-- **Add to Cart**: Users can add products to their cart from the HomeScreen.
-- **Remove from Cart**: Users can remove products from their cart in the CartScreen.
-- **View Cart Items**: Users can view the items in their cart on the CartScreen.
+3. **ProductDetailScreen**
+   - Displays detailed information about a selected product, including its image, name, description, and price.
 
-### Data Storage
+4. **CartScreen**
+   - Displays selected items in the cart.
+   - Each cart item includes an image, name, price, quantity, and a remove-from-cart button.
+   - There is a checkout button at the end of the CartScreen
 
-- **Local Storage**: I used AsyncStorage to store selected items locally on the device. This ensures that the cart persists across app sessions.
+5. **Menu**
+   - It is displayed when the user clicks on the menu button on the left of the app's header
 
-## Implementation
-### HomeScreen
 
-1. **State Management**: 
-   - `products`: Stores the list of available products.
-   - `cart`: Stores the items in the cart.
+### Data Storage 
 
-2. **useEffect**:
-   - Loads the list of products.
-   - Loads the cart from AsyncStorage.
 
-3. **addToCart Function**:
-   - Adds a product to the cart or increments the quantity if the product already exists.
-   - Updates the cart state and stores it in AsyncStorage.
 
-### CartScreen
+### Implementation Approach
+- **Local Storage**: Using AsyncStorage to store selected items locally on the device ensures that the cart persists across app sessions.
 
-1. **State Management**:
-   - `cart`: Stores the items in the cart.
+- **Fetching from API**: Using Fetch API to fetch from the external API (fakestoreapi.com), all the product information gets displayed from that API.
 
-2. **useEffect**:
-   - Loads the cart from AsyncStorage.
+### Screenshots 
+#### HomeScreen
 
-3. **removeFromCart Function**:
-   - Decreases the quantity of a product or removes it if the quantity is 1.
-   - Updates the cart state and stores it in AsyncStorage.
+![HomeScreen](.\my-app\assets\screenshots\s1.jpg)
 
-## Screenshots
+#### Product Details
 
-### HomeScreen
+![Product Details](.\my-app\assets\screenshots\s1.jpg)
 
-![HomeScreen](.\my-app\assets\screenshots\ss1.png)
+#### Menu
 
-### CartScreen
+![Menu](.\my-app\assets\screenshots\s4.jpg)
 
-![CartScreen](.\my-app\assets\screenshots\ss2.png)
+#### Product Details
+
+![CartScreen](.\my-app\assets\screenshots\s4.jpg)
 
 ---
