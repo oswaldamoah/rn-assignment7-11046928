@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 150,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   addButton: {
     position: 'absolute',
@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     right: 10,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: 20,
-    padding: 5,
+    padding: 10, // Increased padding for easier touch
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   productName: {
     fontSize: 16,

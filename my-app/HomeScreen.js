@@ -1,3 +1,4 @@
+// HomeScreen.js
 import React, { useState, useEffect } from 'react';
 import { View, Image, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Product from './Product';
@@ -62,15 +63,17 @@ const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => { /* No functionality */ }}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Icon name="menu" size={28} color="#000" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.logo}><Image source={require('./assets/Logo.png')}  /></TouchableOpacity>
+        <TouchableOpacity style={styles.logo}>
+          <Image source={require('./assets/Logo.png')} />
+        </TouchableOpacity>
         <View style={styles.rightIcons}>
-          <TouchableOpacity onPress={() => { /* No functionality */ }}>
+          <TouchableOpacity style={styles.icon} onPress={() => { /* No functionality */ }}>
             <Icon name="search" size={28} color="#000" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('CartScreen')}>
+          <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate('CartScreen')}>
             <Icon name="shopping-bag" size={28} color="#000" />
           </TouchableOpacity>
         </View>
@@ -114,11 +117,14 @@ const styles = StyleSheet.create({
     width: 150,
     height: 50,
     justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'contain',
+    alignItems: 'flex-end',
+    resizeMode: 'center',
   },
   rightIcons: {
     flexDirection: 'row',
+  },
+  icon: {
+    marginLeft: 15,
   },
   storyHeader: {
     flexDirection: 'row',
