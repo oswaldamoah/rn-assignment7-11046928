@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const ProductDetails = ({ route, navigation }) => {
   const { product, addToCart } = route.params;
@@ -28,16 +29,18 @@ const ProductDetails = ({ route, navigation }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.container}>
-        <Image source={{ uri: product.image }} style={styles.image} />
-        <Text style={styles.productName}>{product.title}</Text>
-        <Text style={styles.productDescription}>{product.description}</Text>
-        <Text style={styles.productPrice}>${product.price}</Text>
-        <TouchableOpacity style={styles.addButton} onPress={() => addToCart(product)}>
-          <Icon name="add-circle" size={24} color="#fff" />
-          <Text style={styles.addButtonText}>Add to Cart</Text>
-        </TouchableOpacity>
-      </View>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <View style={styles.container}>
+          <Image source={{ uri: product.image }} style={styles.image} />
+          <Text style={styles.productName}>{product.title}</Text>
+          <Text style={styles.productDescription}>{product.description}</Text>
+          <Text style={styles.productPrice}>${product.price}</Text>
+          <TouchableOpacity style={styles.addButton} onPress={() => addToCart(product)}>
+            <Icon name="add-circle" size={24} color="#fff" />
+            <Text style={styles.addButtonText}>Add to Cart</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -68,6 +71,9 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginLeft: 15,
+  },
+  scrollViewContent: {
+    paddingBottom: 20,
   },
   container: {
     flex: 1,

@@ -13,15 +13,27 @@ const CartScreen = ({ navigation }) => {
       try {
         const cartItems = await AsyncStorage.getItem('cart');
         if (cartItems) {
-          setCart(JSON.parse(cartItems));
+          const parsedCart = JSON.parse(cartItems);
+          // Ensure the cart is not empty before setting state
+          if (parsedCart.length > 0) {
+            setCart(parsedCart);
+          } else {
+            setCart([]); // Clear the cart state if AsyncStorage is empty
+          }
+        } else {
+          setCart([]); // Set an empty array if cartItems is null
         }
       } catch (error) {
         console.log('Error loading cart:', error);
       }
     };
 
-    loadCart();
-  }, []);
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadCart(); // Reload cart items when the screen gains focus
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   const removeFromCart = async (product) => {
     try {
@@ -67,6 +79,10 @@ const CartScreen = ({ navigation }) => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  const handleCheckout = () => {
+    // CHECKOUT IMPLEMENTATION
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.header}>
@@ -94,6 +110,11 @@ const CartScreen = ({ navigation }) => {
             <Text style={styles.totalText}>Total:</Text>
             <Text style={styles.totalAmount}>${calculateTotal().toFixed(2)}</Text>
           </View>
+        )}
+        {cart.length > 0 && (
+          <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
+            <Text style={styles.checkoutButtonText}>CHECKOUT</Text>
+          </TouchableOpacity>
         )}
       </ScrollView>
     </SafeAreaView>
@@ -191,6 +212,19 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   totalAmount: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  checkoutButton: {
+    backgroundColor: 'black',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  checkoutButtonText: {
+    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },
