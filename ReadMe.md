@@ -37,18 +37,18 @@
 ### Screenshots 
 #### HomeScreen
 
-![HomeScreen](my-app\assets\screenshots\s1.png)
+![HomeScreen](my-app/assets/screenshots/s1.png)
 
 #### Product Details
 
-![Product Details](my-app\assets\screenshots\s1.png)
+![Product Details](my-app/assets/screenshots/s1.png)
 
 #### Menu
 
-![Menu](my-app\assets\screenshots\s1.png)
+![Menu](my-app/assets/screenshots/s1.png)
 
 #### CartScreen
 
-![CartScreen](my-app\assets\screenshots\s1.png)
+![CartScreen](my-app/assets/screenshots/s1.png)
 
 ---
