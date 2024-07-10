@@ -1,21 +1,25 @@
 // App.js
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomeScreen from './HomeScreen';
 import CartScreen from './CartScreen';
-import { ScrollView } from 'react-native';
+import Menu from './Menu';
 
-const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="CartScreen" component={CartScreen} options={{ title: 'Cart' }} />
-      </Stack.Navigator>
+      <Drawer.Navigator
+        drawerContent={(props) => <Menu {...props} />}
+        screenOptions={{ headerShown: false }} // Ensure no default headers are shown
+      >
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="CartScreen" component={CartScreen} />
+        {/* Add other screens here */}
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };
