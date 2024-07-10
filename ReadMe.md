@@ -41,14 +41,14 @@
 
 #### Product Details
 
-![Product Details](my-app/assets/screenshots/s1.png)
+![Product Details](my-app/assets/screenshots/s2.png)
 
 #### Menu
 
-![Menu](my-app/assets/screenshots/s1.png)
+![Menu](my-app/assets/screenshots/s3.png)
 
 #### CartScreen
 
-![CartScreen](my-app/assets/screenshots/s1.png)
+![CartScreen](my-app/assets/screenshots/s4.png)
 
 ---
