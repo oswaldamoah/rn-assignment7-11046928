@@ -1,4 +1,3 @@
-// HomeScreen.js
 import React, { useState, useEffect } from 'react';
 import { View, Image, FlatList, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Product from './Product';
@@ -60,6 +59,10 @@ const HomeScreen = ({ navigation }) => {
     await AsyncStorage.setItem('cart', JSON.stringify(updatedCart)); // Save updated cart to AsyncStorage
   };
 
+  const viewProductDetails = (product) => {
+    navigation.navigate('ProductDetails', { product, addToCart });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -94,7 +97,7 @@ const HomeScreen = ({ navigation }) => {
         numColumns={2}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <Product product={item} addToCart={addToCart} />
+          <Product product={item} addToCart={addToCart} viewProductDetails={viewProductDetails} />
         )}
         contentContainerStyle={styles.productList}
       />
