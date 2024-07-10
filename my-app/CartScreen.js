@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const CartScreen = () => {
+const CartScreen = ({ navigation }) => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -66,30 +68,70 @@ const CartScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.header}>Shopping Cart</Text>
-      {cart.length === 0 ? (
-        <Text style={styles.emptyCartText}>Your cart is empty</Text>
-      ) : (
-        cart.map(renderCartItem)
-      )}
-      {cart.length > 0 && (
-        <View style={styles.totalContainer}>
-          <Text style={styles.totalText}>Total:</Text>
-          <Text style={styles.totalAmount}>${calculateTotal().toFixed(2)}</Text>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Icon name="menu" size={28} color="#000" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')} style={styles.logo}>
+          <Image source={require('./assets/Logo.png')} />
+        </TouchableOpacity>
+        <View style={styles.rightIcons}>
+          <TouchableOpacity style={styles.icon} onPress={() => { /* No functionality */ }}>
+            <Icon name="search" size={28} color="#000" />
+          </TouchableOpacity>
         </View>
-      )}
-    </ScrollView>
+      </View>
+      <ScrollView style={styles.container}>
+        <Text style={styles.headerText}>Shopping Cart</Text>
+        {cart.length === 0 ? (
+          <Text style={styles.emptyCartText}>Your cart is empty</Text>
+        ) : (
+          cart.map(renderCartItem)
+        )}
+        {cart.length > 0 && (
+          <View style={styles.totalContainer}>
+            <Text style={styles.totalText}>Total:</Text>
+            <Text style={styles.totalAmount}>${calculateTotal().toFixed(2)}</Text>
+          </View>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    padding: 20,
     backgroundColor: '#fff',
   },
   header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#f0f0f0',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  logo: {
+    width: 150,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'center',
+  },
+  rightIcons: {
+    flexDirection: 'row',
+  },
+  icon: {
+    marginLeft: 15,
+  },
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+  headerText: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
