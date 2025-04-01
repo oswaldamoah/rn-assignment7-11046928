@@ -1,6 +1,4 @@
-# DCIT202 ASSIGNMENT 7
-
-## 11042928
+# API-Integrated Shopping Mobile App
 
 
 ### Components
